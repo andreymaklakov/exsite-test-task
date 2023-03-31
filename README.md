@@ -1,5 +1,7 @@
 Test task: https://spb.hh.ru/applicant/vacancy_response?vacancyId=78699868&hhtmFrom=vacancy
 
+Try it: https://rad-zuccutto-1e68eb.netlify.app
+
 How it looks like:
 <img src='./page.png'  alt='page' />
 
