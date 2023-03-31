@@ -23,7 +23,7 @@ const FullProjectTitle = ({ project, onSave }) => {
     if (project) {
       setTitle(project.title);
     }
-  }, []);
+  }, [project]);
 
   const titleStyles = cn({
     [styles.title_hide]: changeActive,
