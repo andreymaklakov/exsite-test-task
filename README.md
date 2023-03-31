@@ -1,6 +1,5 @@
-# Getting Started with Create React App
+Test task: https://spb.hh.ru/applicant/vacancy_response?vacancyId=78699868&hhtmFrom=vacancy
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
