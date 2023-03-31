@@ -1,0 +1,15 @@
+.project_item {
+  min-height: 64px;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  font-size: calc(0.5rem + 0.7vw);
+  padding: 20px;
+  overflow-wrap: anywhere;
+
+  cursor: pointer;
+}
