@@ -44,7 +44,7 @@ const TodoItem = ({ item }) => {
     if (item) {
       setText(item.text);
     }
-  }, []);
+  }, [item]);
 
   const textStyles = cn({
     [styles.text_hide]: changeActive,
