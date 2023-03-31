@@ -13,7 +13,7 @@ const ProjectsList = () => {
   return list.map((item) => (
     <Link
       className={styles.list}
-      target={"_blank"}
+//       target={"_blank"}
       key={item.id}
       to={`/${item.id}`}
     >
