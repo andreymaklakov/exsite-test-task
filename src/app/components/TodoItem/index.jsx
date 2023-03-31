@@ -54,6 +54,14 @@ const TodoItem = ({ item }) => {
     [styles.input_hide]: !changeActive,
     [styles.input]: true,
   });
+  const iconStyles = cn({
+    [styles.todo_item_done_icon]: true,
+    [styles.todo_item_done_icon_hide]: !item.done,
+  });
+  const formStyles = cn({
+    [styles.todo_item_form]: true,
+    [styles.todo_item_form_inputHidden]: !changeActive,
+  });
 
   const handleChangeClick = (e) => {
     e.preventDefault();
@@ -68,25 +76,12 @@ const TodoItem = ({ item }) => {
     setText(e.target.value);
   };
 
-  const iconStyles = cn({
-    [styles.todo_item_done_icon]: true,
-    [styles.todo_item_done_icon_hide]: !item.done,
-  });
-
   const handleClickDone = () => {
     dispatch(toggleTodoDone(item.id));
   };
 
   const handleDelete = () => {
     dispatch(deleteTodo(item.id));
-  };
-
-  const treeBorderStyle = () => {
-    if (item.hasKids && kidsOpen) {
-      return `2px solid red`;
-    } else {
-      return "none";
-    }
   };
 
   const handleDragStart = (e, item) => {
@@ -104,17 +99,14 @@ const TodoItem = ({ item }) => {
   };
 
   return (
-    <Paper
-      className={styles.todosTree_container}
-      style={{ border: treeBorderStyle() }}
-    >
+    <Paper className={styles.todosTree_container}>
       <Paper className={styles.todo_item}>
         <div className={styles.todo_item_content}>
           <div onClick={handleClickDone} className={textStyles}>
             {item.text}
           </div>
 
-          <form className={styles.todo_item_form} onSubmit={handleChangeClick}>
+          <form className={formStyles} onSubmit={handleChangeClick}>
             <TextField
               className={inputStyles}
               value={text}
