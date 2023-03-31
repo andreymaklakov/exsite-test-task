@@ -36,7 +36,7 @@ const TodosList = ({ project }) => {
     if (currentProjectFilter) {
       setSearchValue(currentProjectFilter.value);
     }
-  }, []);
+  }, [filter, project.id]);
 
   const dispatch = useDispatch();
 
