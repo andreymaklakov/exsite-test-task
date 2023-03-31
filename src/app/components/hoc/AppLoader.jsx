@@ -36,7 +36,7 @@ const AppLoader = ({ children }) => {
     } else {
       dispatch(loadFilters("[]"));
     }
-  }, []);
+  }, [dispatch]);
 
   if (!projectsList || !todosList || !todosFilter) {
     return <Loader />;
