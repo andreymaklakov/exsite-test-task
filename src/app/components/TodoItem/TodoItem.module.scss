@@ -4,6 +4,8 @@
   flex-direction: column;
   gap: 10px;
 
+  border: 0.1px solid #d3d3d3;
+
   .todoKids_container {
     width: 100%;
     margin-left: 20px;
@@ -12,6 +14,8 @@
   .todo_item {
     width: 100%;
     padding: 20px;
+
+    border: 0.1px solid #d3d3d3;
 
     .todo_item_content {
       min-height: 64px;

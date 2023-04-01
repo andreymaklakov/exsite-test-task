@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { useSelector } from "react-redux";
 import { Navigate, useParams } from "react-router-dom";
 
-import html2pdf from "html2pdf.js";
+import { savePDF } from "@progress/kendo-react-pdf";
 
 import { getProjectsList } from "../../store/projects";
 import FullProjectTitle from "../FullProjectTitle";
@@ -25,15 +25,12 @@ const FullProject = () => {
   }
 
   const handleSavePage = () => {
-    const opt = {
-      margin: 1,
-      filename: currentProject.title,
-      image: { type: "jpeg", quality: 0.98 },
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
-    };
+    pageRef.current.style.fontFamily = "DejaVu Sans";
 
-    html2pdf().from(pageRef.current).set(opt).toPdf().save();
+    savePDF(pageRef.current, {
+      fileName: currentProject.title,
+      paperSize: "A4",
+    });
   };
 
   return (
