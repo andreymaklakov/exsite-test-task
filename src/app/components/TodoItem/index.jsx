@@ -22,6 +22,7 @@ import {
 import TodoInput from "../TodoInput";
 
 import styles from "./TodoItem.module.scss";
+import DraggableItemsWrapper from "../DraggableItemsWrapper";
 
 const TodoItem = ({ item }) => {
   const [changeActive, setChangeActive] = useState(false);
@@ -84,18 +85,11 @@ const TodoItem = ({ item }) => {
     dispatch(deleteTodo(item.id));
   };
 
-  const handleDragStart = (e, item) => {
-    setDraggedItem(item);
-  };
-
-  const handleDragOver = (e) => {
-    e.preventDefault();
-  };
-
-  const handleDrop = (e, item) => {
-    e.preventDefault();
-
+  const handleDrop = (item, draggedItem) => {
     dispatch(sortTodos(item, draggedItem));
+  };
+  const handleDragStart = (item) => {
+    setDraggedItem(item);
   };
 
   return (
@@ -142,17 +136,17 @@ const TodoItem = ({ item }) => {
       </Paper>
 
       {kidsOpen &&
-        currentTodoKids.map((todo) => (
-          <div
-            draggable={true}
-            onDragStart={(e) => handleDragStart(e, todo)}
-            onDragOver={(e) => handleDragOver(e)}
-            onDrop={(e) => handleDrop(e, todo)}
-            className={styles.todoKids_container}
-            key={todo.id}
+        currentTodoKids.map((item) => (
+          <DraggableItemsWrapper
+            key={item.id}
+            item={item}
+            styles={styles.todoKids_container}
+            onDrop={handleDrop}
+            draggedItem={draggedItem}
+            onDragStart={handleDragStart}
           >
-            <TodoItem item={todo} />
-          </div>
+            <TodoItem item={item} />
+          </DraggableItemsWrapper>
         ))}
     </Paper>
   );

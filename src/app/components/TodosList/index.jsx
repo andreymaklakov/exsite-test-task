@@ -8,6 +8,7 @@ import SearchInput from "../SearchInput";
 import TodoItem from "../TodoItem";
 
 import styles from "./TodosList.module.scss";
+import DraggableItemsWrapper from "../DraggableItemsWrapper";
 
 const TodosList = ({ project }) => {
   const list = useSelector(getTodosList());
@@ -45,37 +46,28 @@ const TodosList = ({ project }) => {
     dispatch(changeFilter({ projectId: project.id, value: e.target.value }));
   };
 
-  const handleDragStart = (e, item) => {
-    setDraggedItem(item);
-  };
-
-  const handleDragOver = (e) => {
-    e.preventDefault();
-  };
-
-  const handleDrop = (e, item) => {
-    e.preventDefault();
-
+  const handleDrop = (item, draggedItem) => {
     dispatch(sortTodos(item, draggedItem));
+  };
+  const handleDragStart = (item) => {
+    setDraggedItem(item);
   };
 
   return (
     <>
       <SearchInput value={searchValue} onChange={handleChange} />
-      {filteredList.map((item) => {
-        return (
-          <div
-            draggable={true}
-            onDragStart={(e) => handleDragStart(e, item)}
-            onDragOver={(e) => handleDragOver(e)}
-            onDrop={(e) => handleDrop(e, item)}
-            className={styles.dragContainer}
-            key={item.id}
-          >
-            <TodoItem item={item} />
-          </div>
-        );
-      })}
+      {filteredList.map((item) => (
+        <DraggableItemsWrapper
+          key={item.id}
+          item={item}
+          styles={styles.dragContainer}
+          onDrop={handleDrop}
+          draggedItem={draggedItem}
+          onDragStart={handleDragStart}
+        >
+          <TodoItem item={item} />
+        </DraggableItemsWrapper>
+      ))}
     </>
   );
 };

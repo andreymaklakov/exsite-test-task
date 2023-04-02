@@ -25,8 +25,6 @@ const FullProject = () => {
   }
 
   const handleSavePage = () => {
-    pageRef.current.style.fontFamily = "DejaVu Sans";
-
     savePDF(pageRef.current, {
       fileName: currentProject.title,
       paperSize: "A4",
